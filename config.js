@@ -1,0 +1,5 @@
+// PROCESS ES UN ENTORNO GLOBAL QUE CORRE EN TODO EL ENTORNO DE DESARROLLO NODEJS
+
+process.env.PORT = process.env.PORT || 4000;
+process.env.SECRET = "SECRET";
+process.env.TIMETOKEN = "30d"
