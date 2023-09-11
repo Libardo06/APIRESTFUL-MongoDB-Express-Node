@@ -199,7 +199,7 @@ let mostrarArticulos = async (req, res) => {
           });
         })
         .catch(error => {
-          respuesta.res.status(400).json({
+          res.status(400).json({
             status: 400,
             message: `error al actualizar ${error}`,
           });

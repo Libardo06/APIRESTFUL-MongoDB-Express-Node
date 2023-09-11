@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const uniqueValidator = require('mongoose-unique-validator')
 //ESQUEMA PARA MODELO CONECTOR A MONGODB
 let Schema = mongoose.Schema;
 let articulosSchema = new Schema({
@@ -8,7 +9,8 @@ let articulosSchema = new Schema({
   },
   url:{
     type: String,
-    required:[true, "La URL es obligatoria"]
+    required:[true, "La URL es obligatoria"],
+    unique:[true, "Ya existe un articulo con esta URL"]
   },
   titulo: {
     type: String,
@@ -23,6 +25,7 @@ let articulosSchema = new Schema({
     required:[true,"El contenido es obligatorio"]
   }
 });
-
+//DEVOLVER MENSAJE PERSONALIZADO PARA VALIDACIONES UNICAS
+articulosSchema.plugin(uniqueValidator,{message:'El {PATH}: {VALUE} Ya esta en uso'});
 //EXPORTAMOS EL MODELO
 module.exports = mongoose.model("articulos",articulosSchema);
